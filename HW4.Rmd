@@ -1,0 +1,24 @@
+---
+title: "HW 4"
+author: "Robert Saldivar and Madeline Gorchels"
+date: "5/4/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+#Loading neccessary packages
+
+library(tidyverse)
+library(deSolve)
+library(sensitivity)
+
+```
+
+```{r}
+
+```
+
