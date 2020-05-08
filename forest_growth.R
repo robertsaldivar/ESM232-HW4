@@ -6,13 +6,19 @@
 #' @author Madeline Gorchels
 #' 
 
-forest_growth = function(initialC, r, g, carry_capacity, air_temp, dt, dc) {
-  if(C <= canopy_closure)
-    dt=C*r
-  if(C >= canopy_closure)
-    dt=g
-  if(air_temp <= 0)
-    dt=0
-  if(C=carry_capacity)
-     dt=0
-}
+forest_growth = function(initialC, r, g, carry_capacity, air_temp, dC_dt) {
+ 
+   C = initialC*dC_dt
+  
+  if(C <= canopy_closure) {
+    dC_dt=initialC*r}
+  if(C >= canopy_closure) {
+    dC_dt=g}
+  if(air_temp <= 0) {
+    dC_dt=0}
+  if(C=carry_capacity) {
+     dC_dt=0}
+  
+  return(C)
+   }
+
