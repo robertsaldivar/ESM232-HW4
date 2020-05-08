@@ -8,7 +8,7 @@
 
 forest_growth = function(initialC, r, g, carry_capacity, air_temp, dt, dc) {
   if(C <= canopy_closure)
-    
+    dt=C*r
   if(C >= canopy_closure)
     dt=g
   if(air_temp <= 0)
