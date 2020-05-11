@@ -29,8 +29,7 @@ initialforest = 100
 years = seq(from=1, to=300, by=1)
 parms_1= list(initialC=initialforest, r=0.01, g=2, c_closure=100, carry_capacity=500, air_temp=20)
 
-#but it gets grumpy once I switch to ODE solver
 forest_1 = ode(y=initialforest, times=years, func=forest_growth,parms=parms_1)
-
+head(forest_1)
 ```
 
