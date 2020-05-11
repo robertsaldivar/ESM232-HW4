@@ -19,9 +19,6 @@ forest_growth = function(time, initialC, parms) {
                         else{
                           dC_dt==parms$g
                  }))
-  # dC_dt=0}
-  #if (C=parms$carry_capacity) {
-  # dC_dt=0}
   
   return(list(C))
    }
