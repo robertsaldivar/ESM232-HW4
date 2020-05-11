@@ -24,10 +24,10 @@ source("forest_growth.R")
 
 initialforest = 100
 years = seq(from=1, to=300, by=1)
+parms_1= list(initialC=initialforest, r=0.01, g=2, carry_capacity=500, air_temp=20, canopy_closure=100)
 
 
-forest_1 = ode(y=initialforest, times=years, func=forest_growth,parms=c(initialforest, 0.01, 2, 500, 20, 100))
-head(Ptime)
-colnames(Ptime)=c("year","P")
+forest_1 = ode(y=initialforest, times=years, func=forest_growth,parms=parms_1)
+
 ```
 
