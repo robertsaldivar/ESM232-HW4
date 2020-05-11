@@ -11,7 +11,7 @@ forest_growth = function(time, initialC, parms) {
    C = (initialC*dC_dt)+initialC
   
   dC_dt = ifelse(C==parms$carry_capacity,
-                 0,
+                0,
                  ifelse(parms$air_temp <= 0, 
                         0,
                         if(C <= parms$c_closure) {
