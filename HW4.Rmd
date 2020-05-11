@@ -30,6 +30,10 @@ years = seq(from=1, to=300, by=1)
 parms_1= list(initialC=initialforest, r=0.01, g=2, c_closure=100, carry_capacity=500, air_temp=20)
 
 forest_1 = ode(y=initialforest, times=years, func=forest_growth,parms=parms_1)
-colnames(forest_1, 
+colnames(forest_1,c("year","C"))
+
+#ggplot(as.data.frame(forest_1), aes(year,C))+geom_point()+labs(y="Tree Biomass (kg C)", "years")
+
+         
 ```
 
