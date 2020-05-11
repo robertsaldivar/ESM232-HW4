@@ -6,11 +6,11 @@
 #' @author Madeline Gorchels
 #' 
 
-forest_growth = function(time, initialC, r, g, carry_capacity, air_temp, canopy_closure) {
+forest_growth = function(time, initialC, r, g, c_closure, carry_capacity, air_temp) {
   
    C = initialC*dC_dt+initialC
   
-  if(C <= canopy_closure) {
+  if(C <= c_closure) {
     dC_dt=initialC*r}
    else{
      dC_dt=g
