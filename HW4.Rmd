@@ -45,3 +45,65 @@ C_plot_1
          
 ```
 
+```{r}
+# Setting the stage for the sobel sensitivity analysis
+
+initialf = 10
+
+np = 10000
+
+#setting the first parameters
+r = rnorm(mean = 0.01, sd = 0.0025, n = np)
+g = rnorm(mean = 2, sd = 0.5, n=np)
+x1 = cbind.data.frame(r=r, g=g)
+
+#setting the second set of parameters
+r = rnorm(mean = 0.01, sd = 0.0025, n = np)
+g = rnorm(mean = 2, sd = 0.5, n=np)
+x2 = cbind.data.frame(r=r, g=g)
+
+sens_F = sobol2007(model = NULL, x1, x2, nboot = 300)
+
+head(sens_F$X)
+
+sens_F$X[1,]
+
+initialf
+
+simtimes = seq(from =1, to =300)
+
+parms = list(r=sens_F$X$r[1], g=sens_F$X$g[1])
+
+result = ode(y = initialf, time=simtimes, parms = parms, func = forest_growth) # I am having trouble getting the ode solver to work
+
+
+######################################################################
+
+head(result)
+colnames(result) = c("time", "C")
+
+result = as.data.frame(result)
+ggplot(result, aes(x= time, y = C)) +
+  geom_point()
+
+
+
+# Below this step, in this chunk might not be necessary for this hw
+#Theis is determing when the forest reaches its maximum size
+maxC = max(result$C)
+maxC
+
+
+#Determining when the max occurred
+maxtime = which.max(result$C)
+
+maxyear = result$time[idx]
+maxyear
+
+
+```
+
+```{r}
+
+```
+
