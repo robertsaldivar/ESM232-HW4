@@ -70,7 +70,7 @@ sens_F$X[1,]
 
 initialf
 
-simtimes = seq(from =1, to =300)
+simtimes = seq(from =1, to =300, by = 1)
 
 parms = list(r=sens_F$X$r[1], g=sens_F$X$g[1])
 
@@ -104,6 +104,62 @@ maxyear
 ```
 
 ```{r}
+
+compute_metrics = function(result) {
+  maxc = max(result$C)
+  idx = which.max(result$C)
+  maxyear = result$time[idx]
+  return(list(maxC=maxC, maxyear = maxyear))
+}
+
+compute_metrics(result)
+
+# create a wrapper for the function
+
+wrapper = function(r, g, initialf, simtimes, func) {
+  parms = list(r= r, g = g)
+  result = ode(y= initialf, times = simtimes, func=forest_growth, parms = parms)
+  colnames(result = c("time", "C"))
+  
+  metrics=compute_metrics(as.data.frame(result))
+  return(metrics)
+}
+
+allresults = mapply(FUN = wrapper, r=sens_F$X$r, g=sens$X$g, MoreArgs =list(initialf=initialf, simtimes=simtimes, func=forest_growth))
+
+allres = as.data.frame(matrix(unlist(allresults), ncol=2, byrow = TRUE))
+colname(allres) = c("maxC", "maxyear")
+
+#this is for creating boxplots
+
+box = allres %>%
+  gather(key = "metric", value = "value")
+
+ggplot(box, aes(metric, value, col=metric)) +
+  geom_boxplot()
+
+```
+
+```{r}
+#Computing the sobol indicies for each metric
+
+#starting with the sensitivity for maxC
+sens_F_maxC = sensitivity::tell(sens_F, allres$maxC)
+
+sens_F_maxC$S
+
+sens_F_maxC$T
+
+plot(sens_F_maxC)
+
+#Doing the Sensitivity for maxyear
+sens_F_maxyear = sensitivity::tell(sens_F, allres$maxyear)
+
+sens_F_maxyear$S
+
+sens_F_maxyear$T
+
+plot(sens_F_maxyear)
 
 ```
 
