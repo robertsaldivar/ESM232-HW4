@@ -95,10 +95,10 @@ maxC
 
 
 #Determining when the max occurred
-maxtime = which.max(result$C)
+#maxtime = which.max(result$C)
 
-maxyear = result$time[idx]
-maxyear
+#maxyear = result$time[idx]
+#maxyear
 
 
 ```
@@ -119,13 +119,13 @@ compute_metrics(result)
 wrapper = function(r, g, initialf, simtimes, func) {
   parms = list(r= r, g = g)
   result = ode(y= initialf, times = simtimes, func=forest_growth, parms = parms)
-  colnames(result = c("time", "C"))
+  #colnames(result = c("time", "C"))
   
   metrics=compute_metrics(as.data.frame(result))
   return(metrics)
 }
 
-allresults = mapply(FUN = wrapper, r=sens_F$X$r, g=sens$X$g, MoreArgs =list(initialf=initialf, simtimes=simtimes, func=forest_growth))
+allresults = mapply(FUN = wrapper, r=sens_F$X$r, g=sens_F$X$g, MoreArgs =list(initialf=initialf, simtimes=simtimes, func=forest_growth))
 
 allres = as.data.frame(matrix(unlist(allresults), ncol=2, byrow = TRUE))
 colname(allres) = c("maxC", "maxyear")
