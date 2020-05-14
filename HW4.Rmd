@@ -50,7 +50,7 @@ C_plot_1
 
 initialf = 10
 
-np = 10000
+np = 1000
 
 #setting the first parameters
 r = rnorm(mean = 0.01, sd = 0.0025, n = np)
