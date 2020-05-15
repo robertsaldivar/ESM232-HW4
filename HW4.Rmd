@@ -145,22 +145,22 @@ ggplot(box, aes(metric, value, col=metric)) +
 #Computing the sobol indicies for each metric
 
 #starting with the sensitivity for maxC
-sens_F_maxC = sensitivity::tell(sens_F, allres$maxC)
+#sens_F_maxC = sensitivity::tell(sens_F, allres$maxC)
 
-sens_F_maxC$S
+#sens_F_maxC$S
 
-sens_F_maxC$T
+#sens_F_maxC$T
 
-plot(sens_F_maxC)
+#plot(sens_F_maxC)
 
 #Doing the Sensitivity for maxyear
-sens_F_maxyear = sensitivity::tell(sens_F, allres$maxyear)
+#sens_F_maxyear = sensitivity::tell(sens_F, allres$maxyear)
 
-sens_F_maxyear$S
+#sens_F_maxyear$S
 
-sens_F_maxyear$T
+#sens_F_maxyear$T
 
-plot(sens_F_maxyear)
+#plot(sens_F_maxyear)
 
 ```
 
