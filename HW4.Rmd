@@ -129,7 +129,7 @@ wrapper = function(r, g, initialf, simtimes, func) {
 allresults = mapply(FUN = wrapper, r=sens_F$X$r, g=sens_F$X$g, MoreArgs =list(initialf=initialf, simtimes=simtimes, func=forest_growth))
 
 allres = as.data.frame(matrix(unlist(allresults), ncol=2, byrow = TRUE))
-colname(allres) = c("maxC", "maxyear")
+colnames(allres) = c("maxC", "maxyear")
 
 #this is for creating boxplots
 
